@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sambalpur Cricket League — Championship 2026</title>
+<meta name="description" content="Sambalpur Cricket League 2026 — points table, results, player stats, fixtures and team registration.">
+<meta property="og:title" content="Sambalpur Cricket League 2026 — Player registration open">
+<meta property="og:description" content="Points table, results, top players, fixtures and registration.">
+<meta name="theme-color" content="#070b14">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23d9a93b'/><text x='50' y='62' font-size='34' text-anchor='middle' font-family='Arial' font-weight='bold' fill='%23070b14'>SCL</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#070b14; --night-2:#0e1524; --night-3:#151f33; --line:rgba(255,255,255,.08);
+    --gold:#d9a93b; --gold-2:#f3cf6b; --sunset:#e8742c; --cream:#f6f1e6; --paper:#fbf8f1;
+    --ink:#121722; --muted:#6a7180; --win:#2f9e63; --loss:#d0423a; --r:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Manrope,system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+  h1,h2,h3{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.01em;line-height:1;text-transform:uppercase}
+  h2{font-size:clamp(2rem,5vw,3rem)}
+  .eyebrow{font-size:.75rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--sunset)}
+  section{padding:72px 0}
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+  .sec-head p{color:var(--muted);max-width:420px}
+  .empty{background:#fff;border:1.5px dashed #ddd3bd;border-radius:var(--r);padding:34px 20px;text-align:center;color:var(--muted);font-weight:600}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(7,11,20,.92);backdrop-filter:blur(10px);color:var(--cream);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .crest{width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--gold-2),var(--gold) 60%,#a77a1c);color:var(--night);display:grid;place-items:center;font-family:Anton;font-size:.85rem;letter-spacing:.03em;overflow:hidden;flex:0 0 auto}
+  .crest img{width:100%;height:100%;object-fit:cover}
+  .brand b{font-family:Anton;font-weight:400;font-size:1.2rem;letter-spacing:.05em}
+  .navlinks{display:flex;gap:22px;align-items:center;font-size:.9rem;font-weight:600}
+  .navlinks a{text-decoration:none;opacity:.8}.navlinks a:hover{opacity:1}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 22px;border-radius:999px;font-weight:800;font-size:.95rem;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,box-shadow .15s;font-family:inherit}
+  .btn:active{transform:scale(.97)}
+  .btn-gold{background:linear-gradient(180deg,var(--gold-2),var(--gold));color:var(--night);box-shadow:0 6px 22px rgba(217,169,59,.35)}
+  .btn-gold:hover{box-shadow:0 8px 28px rgba(217,169,59,.55)}
+  .btn-ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(246,241,230,.35)}
+  .btn-sm{padding:8px 16px;font-size:.85rem}
+  @media (max-width:760px){.navlinks a:not(.btn){display:none}}
+
+  /* HERO — night stadium */
+  .hero{position:relative;overflow:hidden;color:var(--cream);padding:70px 0 0;
+    background:
+      radial-gradient(ellipse 60% 45% at 18% 0%, rgba(255,240,200,.16), transparent 70%),
+      radial-gradient(ellipse 60% 45% at 82% 0%, rgba(255,240,200,.16), transparent 70%),
+      radial-gradient(ellipse 120% 60% at 50% 115%, rgba(232,116,44,.55), transparent 60%),
+      linear-gradient(180deg,var(--night) 0%,#0b1220 60%,#1a1422 100%)}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.5) 1px,transparent 1.5px);background-size:3px 3px;opacity:.04;pointer-events:none}
+  .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;position:relative;z-index:1;padding-bottom:70px}
+  .hero .kicker{display:inline-flex;align-items:center;gap:10px;font-size:.75rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2)}
+  .hero .kicker::before{content:"";width:28px;height:2px;background:var(--gold)}
+  .hero h1{font-size:clamp(3rem,8.5vw,6rem);margin:14px 0 6px}
+  .hero h1 .g{background:linear-gradient(180deg,var(--gold-2),var(--gold) 55%,#b9832a);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .edition{font-family:Anton;font-size:clamp(1.2rem,3vw,1.7rem);letter-spacing:.12em;color:var(--sunset);text-transform:uppercase}
+  .hero .lead{font-size:1.1rem;opacity:.82;margin:18px 0 28px;max-width:470px}
+  .hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
+  .next{background:rgba(14,21,36,.75);border:1px solid rgba(217,169,59,.35);backdrop-filter:blur(6px);border-radius:20px;padding:26px;box-shadow:0 30px 70px rgba(0,0,0,.45);position:relative}
+  .next .tag{position:absolute;top:-12px;left:24px;background:var(--gold);color:var(--night);font-weight:800;font-size:.72rem;letter-spacing:.14em;padding:5px 12px;border-radius:999px;text-transform:uppercase}
+  .next h3{font-size:1.9rem;margin:6px 0 4px;color:var(--gold-2)}
+  .next .teams{font-weight:800;font-size:1.02rem;margin-bottom:8px}
+  .next .meta{opacity:.75;font-size:.9rem;display:grid;gap:3px;margin-bottom:18px}
+  .countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+  .countdown div{background:var(--night);border:1px solid var(--line);border-radius:10px;padding:10px 4px;text-align:center}
+  .countdown b{display:block;font-family:Anton;font-size:1.8rem;font-weight:400;line-height:1;color:var(--cream)}
+  .countdown small{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6}
+  .next .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .next .note{font-weight:700;color:var(--sunset);font-size:.88rem}
+  @media (max-width:860px){.hero-grid{grid-template-columns:1fr}}
+
+  /* STAT STRIP */
+  .strip{background:var(--night);color:var(--cream);border-top:1px solid rgba(217,169,59,.25)}
+  .strip .wrap{display:grid;grid-template-columns:repeat(5,1fr)}
+  .stat{padding:24px 10px;text-align:center;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:0}
+  .stat b{font-family:Anton;font-weight:400;font-size:clamp(1.5rem,3vw,2.2rem);display:block;line-height:1.05;color:var(--gold-2)}
+  .stat span{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;opacity:.6}
+  @media (max-width:760px){.strip .wrap{grid-template-columns:repeat(2,1fr)}.stat{border-bottom:1px solid var(--line)}.stat:first-child{grid-column:1/-1}}
+
+  /* POINTS TABLE */
+  .tablecard{background:#fff;border-radius:18px;overflow:hidden;border:1px solid #ece4d2}
+  .tablecard .scroll{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:.95rem;min-width:520px}
+  th{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);background:var(--night);text-align:center;padding:14px 12px;font-weight:700}
+  th.l,td.l{text-align:left}
+  td{padding:14px 12px;border-top:1px solid #f0e9da;text-align:center;font-variant-numeric:tabular-nums}
+  td.pos{font-family:Anton;font-size:1.15rem;color:var(--muted);width:44px}
+  tr.q td.pos{color:var(--gold)}
+  tr.q td:first-child{box-shadow:inset 4px 0 0 var(--gold)}
+  td.team{font-weight:800}
+  td.pts{font-family:Anton;font-size:1.2rem}
+  .legend{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--muted);padding:12px 16px;border-top:1px solid #f0e9da}
+  .legend i{width:12px;height:12px;border-radius:3px;background:var(--gold);display:inline-block}
+
+  /* RESULTS */
+  .results{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+  .res{background:#fff;border:1px solid #ece4d2;border-radius:var(--r);padding:18px 20px}
+  .res .top{display:flex;justify-content:space-between;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .res .row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;gap:10px}
+  .res .row .t{font-weight:700}
+  .res .row .s{font-variant-numeric:tabular-nums;font-weight:600;color:var(--muted);white-space:nowrap}
+  .res .row.win .t{font-weight:800}
+  .res .row.win .s{color:var(--ink);font-weight:800}
+  .res .row.win .t::after{content:" ✓";color:var(--win)}
+  .res .sum{margin-top:10px;padding-top:12px;border-top:1px dashed #e6dcc6;font-weight:800;color:var(--win);font-size:.92rem}
+  .res .mom{font-size:.82rem;color:var(--muted);margin-top:4px}
+  .res .mom b{color:var(--ink)}
+
+  /* LEADERBOARDS */
+  .boards{background:var(--night-2);color:var(--cream)}
+  .boards .sec-head p{color:rgba(246,241,230,.6)}
+  .board-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .board{background:var(--night-3);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .board header{padding:20px 22px;display:flex;justify-content:space-between;align-items:center}
+  .board header h3{font-size:1.5rem}
+  .cap{font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+  .cap.orange{background:var(--sunset);color:#fff}.cap.purple{background:#7b4ad8;color:#fff}
+  .lead-row{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;padding:14px 22px;border-top:1px solid var(--line)}
+  .lead-row .n{font-family:Anton;font-size:1.2rem;opacity:.5}
+  .lead-row.first .n{color:var(--gold-2);opacity:1}
+  .lead-row .p b{display:block}
+  .lead-row .p small{opacity:.55;font-size:.8rem}
+  .lead-row .v{text-align:right}
+  .lead-row .v b{font-family:Anton;font-weight:400;font-size:1.6rem;line-height:1;display:block}
+  .lead-row .v small{opacity:.55;font-size:.75rem}
+  .bar{height:3px;background:rgba(255,255,255,.08);border-radius:3px;margin-top:6px;overflow:hidden}
+  .bar i{display:block;height:100%;background:var(--gold);border-radius:3px}
+  .boards .empty{background:transparent;border-color:var(--line);color:rgba(246,241,230,.6)}
+  @media (max-width:860px){.board-grid{grid-template-columns:1fr}}
+
+  /* FIXTURES */
+  .fixtures{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+  .fx{background:#fff;border:1px solid #ece4d2;border-radius:var(--r);padding:20px;position:relative}
+  .fx .d{font-family:Anton;font-size:1.45rem;text-transform:uppercase;color:var(--night)}
+  .fx .t{font-weight:800;margin:6px 0 2px}
+  .fx .v{color:var(--muted);font-size:.88rem}
+  .fx::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:4px;background:var(--gold);border-radius:0 4px 4px 0}
+
+  /* REGISTER */
+  .register{background:linear-gradient(180deg,var(--night) 0%,#141020 100%);color:var(--cream)}
+  .reg-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}
+  .register .eyebrow{color:var(--gold-2)}
+  .register h2{margin:8px 0 16px}
+  .register .intro p{opacity:.78;margin-bottom:14px}
+  .perks{list-style:none;display:grid;gap:10px;margin-top:20px}
+  .perks li{display:flex;gap:10px;align-items:flex-start;opacity:.9}
+  .perks li::before{content:"";flex:0 0 10px;height:10px;margin-top:7px;border-radius:50%;background:var(--gold)}
+  form{background:var(--paper);color:var(--ink);border-radius:20px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .f{display:flex;flex-direction:column;gap:6px}
+  .f.full{grid-column:1/-1}
+  .f > label{font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+  label em{color:var(--loss);font-style:normal}
+  input,select,textarea{font:inherit;font-size:1rem;padding:12px 14px;border-radius:10px;border:1.5px solid #dcd2bd;background:#fff;color:var(--ink);width:100%}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(217,169,59,.25)}
+  textarea{min-height:90px;resize:vertical}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips input{display:none}
+  .chips label{font-weight:700;font-size:.9rem;padding:9px 14px;border-radius:999px;border:1.5px solid #dcd2bd;background:#fff;cursor:pointer;user-select:none}
+  .chips input:checked + label{background:var(--night);color:var(--gold-2);border-color:var(--night)}
+  .hp{position:absolute;left:-9999px}
+  .sect{grid-column:1/-1;display:flex;align-items:center;gap:10px;font-family:Anton;font-size:1.15rem;letter-spacing:.04em;text-transform:uppercase;padding-top:10px;border-top:1px solid #e9e0cc}
+  .sect:first-child{border-top:0;padding-top:0}
+  .sect b{width:26px;height:26px;border-radius:50%;background:var(--night);color:var(--gold-2);display:grid;place-items:center;font-weight:400;font-size:.9rem}
+  .f > label small{text-transform:none;letter-spacing:0;font-weight:600;color:var(--muted)}
+  .hint{color:var(--muted);font-size:.78rem}
+  .file{position:absolute;width:1px;height:1px;opacity:0}
+  .drop{display:flex !important;align-items:center;gap:12px;padding:12px;border:1.5px dashed #cdbf9f;border-radius:12px;background:#fff;cursor:pointer;text-transform:none !important;letter-spacing:0 !important}
+  .drop:hover,.file:focus + .drop{border-color:var(--gold)}
+  .drop.has{border-style:solid;border-color:var(--win)}
+  .thumb{width:48px;height:48px;border-radius:8px;background:var(--cream);display:grid;place-items:center;font-size:1.4rem;overflow:hidden;flex:0 0 auto}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .dtext{display:flex;flex-direction:column;min-width:0}
+  .dtext b{font-size:.92rem}
+  .dtext small{color:var(--muted);font-size:.78rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .paybox{grid-column:1/-1;display:flex;gap:18px;align-items:center;background:var(--night);color:var(--cream);border-radius:14px;padding:18px;flex-wrap:wrap}
+  .paybox .qr{width:150px;height:150px;border-radius:10px;background:#fff;padding:6px;flex:0 0 auto}
+  .paybox .qr img{width:100%;height:100%;object-fit:contain}
+  .paybox .amt{font-family:Anton;font-size:2.4rem;color:var(--gold-2);line-height:1}
+  .paybox .upi{display:flex;align-items:center;gap:8px;margin:8px 0 12px;font-weight:700;flex-wrap:wrap}
+  .paybox code{background:rgba(255,255,255,.08);padding:4px 8px;border-radius:6px;font-size:.95rem}
+  .paybox .copy{background:none;border:1px solid rgba(255,255,255,.3);color:var(--cream);border-radius:6px;padding:3px 8px;font:inherit;font-size:.78rem;cursor:pointer}
+  .paybox small{opacity:.65;display:block}
+  .paybox .qr canvas,.paybox .qr svg{width:100%;height:100%}
+  .paybox .qrcap{font-size:.72rem;opacity:.6;text-align:center;margin-top:6px}
+  .payapps{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+  .payapps .btn{width:100%}
+  .payapps .row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .payapps .app{background:#fff;color:var(--ink);border-radius:10px;padding:9px 4px;font-weight:800;font-size:.8rem;text-align:center;text-decoration:none}
+  .payapps small{text-align:center}
+  .decl{grid-column:1/-1;background:var(--cream);border-radius:12px;padding:16px;font-size:.88rem;color:#3c4250}
+  .decl p{margin-bottom:10px}
+  .decl .consent{color:var(--ink);font-size:.95rem}
+  .closed{grid-column:1/-1;text-align:center;padding:36px 10px}
+  .closed h3{font-size:2rem;margin-bottom:8px}
+  .closed p{color:var(--muted);margin-bottom:16px}
+  .progress{height:4px;background:#eee;border-radius:4px;overflow:hidden;flex-basis:100%;display:none}
+  .progress i{display:block;height:100%;width:30%;background:var(--gold);animation:load 1.1s infinite ease-in-out}
+  @keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(340%)}}
+  .team-only{display:none}
+  form.is-team .team-only{display:flex}
+  .consent{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--muted)}
+  .consent input{width:auto;margin-top:3px}
+  .submit-row{grid-column:1/-1;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .msg{font-weight:700;font-size:.92rem}
+  .msg.err{color:var(--loss)}
+  .done{grid-column:1/-1;text-align:center;padding:30px 10px}
+  .done .tick{width:64px;height:64px;border-radius:50%;background:var(--win);color:#fff;display:grid;place-items:center;font-size:2rem;margin:0 auto 14px}
+  .done h3{font-size:2rem;margin-bottom:6px}
+  .done p{color:var(--muted)}
+  @media (max-width:860px){.reg-grid{grid-template-columns:1fr}}
+  @media (max-width:560px){form{grid-template-columns:1fr;padding:20px}}
+
+  footer{background:var(--night);color:var(--cream);padding:40px 0 90px;border-top:1px solid var(--line)}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  footer .links{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.92rem}
+  footer .links a{text-decoration:none;opacity:.8}
+  footer small{opacity:.5}
+
+  .mcta{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;display:none}
+  .mcta .btn{width:100%;padding:15px}
+  @media (max-width:760px){.mcta{display:block}}
+  .mcta.hide{display:none}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="crest" data-crest></span><b data-club="short"></b></a>
+    <div class="navlinks">
+      <a href="#table">Points table</a>
+      <a href="#results">Results</a>
+      <a href="#stats">Top players</a>
+      <a href="#fixtures">Fixtures</a>
+      <a class="btn btn-gold btn-sm" href="#register">Register</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker" data-club="city"></span>
+      <h1 id="heroName"></h1>
+      <div class="edition" data-club="edition"></div>
+      <p class="lead" data-club="tagline"></p>
+      <div class="ctas">
+        <a class="btn btn-gold" href="#register">Register now</a>
+        <a class="btn btn-ghost" id="igBtn" target="_blank" rel="noopener">Follow on Instagram</a>
+      </div>
+    </div>
+    <div class="next">
+      <span class="tag" id="nmTag">Next match</span>
+      <h3 id="nmTitle"></h3>
+      <div class="teams" id="nmTeams"></div>
+      <div class="meta" id="nmMeta"></div>
+      <div class="countdown" id="countdown"></div>
+      <div class="foot">
+        <span class="note" id="nmNote"></span>
+        <a class="btn btn-gold btn-sm" href="#register">Register now</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="strip"><div class="wrap" id="statStrip"></div></div>
+
+<section id="table">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Standings</p><h2>Points table</h2></div>
+      <p>Win = 2 points. Teams level on points are separated by net run rate (NRR).</p>
+    </div>
+    <div id="tableWrap"></div>
+  </div>
+</section>
+
+<section id="results" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Match insights</p><h2>Latest results</h2></div>
+      <p>Scorecards, margins and player of the match.</p>
+    </div>
+    <div id="resultsWrap"></div>
+  </div>
+</section>
+
+<section id="stats" class="boards">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Race for the caps</p><h2>Top players</h2></div>
+      <p>Leading run-scorers and wicket-takers of the championship.</p>
+    </div>
+    <div class="board-grid">
+      <div class="board"><header><h3>Most runs</h3><span class="cap orange">Orange cap</span></header><div id="batList"></div></div>
+      <div class="board"><header><h3>Most wickets</h3><span class="cap purple">Purple cap</span></header><div id="bowlList"></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="fixtures">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><p class="eyebrow">Coming up</p><h2>Fixtures</h2></div>
+      <p>Schedule may change — follow us on Instagram for live updates.</p>
+    </div>
+    <div id="fxWrap"></div>
+  </div>
+</section>
+
+<section id="register" class="register">
+  <div class="wrap reg-grid">
+    <div class="intro">
+      <p class="eyebrow">Player registration</p>
+      <h2>Register to play</h2>
+      <p>Fill in your details, upload your photo and Aadhaar, pay the registration fee and submit — no Google sign-in needed. The organisers will contact you on your mobile number.</p>
+      <p id="deadlineLine" style="font-weight:800;color:var(--gold-2)"></p>
+      <ul class="perks" id="perks"></ul>
+    </div>
+
+    <form id="regForm" novalidate>
+      <div class="sect"><b>1</b> Player details</div>
+      <div class="f full"><label for="name">Name of the player <small>(as per ID proof)</small> <em>*</em></label><input id="name" name="name" required maxlength="80" autocomplete="name"></div>
+      <div class="f full"><label for="father">Father's name <em>*</em></label><input id="father" name="father" required maxlength="80"></div>
+      <div class="f"><label for="dob">Date of birth <em>*</em></label><input id="dob" name="dob" type="date" required></div>
+      <div class="f"><label for="phone">Mobile number <em>*</em></label><input id="phone" name="phone" type="tel" required maxlength="15" inputmode="numeric" autocomplete="tel" placeholder="10-digit number"></div>
+      <div class="f full"><label for="email">Email <small>(optional — for confirmation)</small></label><input id="email" name="email" type="email" maxlength="120" autocomplete="email"></div>
+
+      <div class="sect"><b>2</b> Address</div>
+      <div class="f full"><label for="address">Full address <em>*</em></label><textarea id="address" name="address" required maxlength="300" rows="2"></textarea></div>
+      <div class="f"><label for="village">Village / Town <em>*</em></label><input id="village" name="village" required maxlength="80"></div>
+      <div class="f"><label for="district">District <em>*</em></label><input id="district" name="district" required maxlength="60"></div>
+
+      <div class="sect"><b>3</b> Documents</div>
+      <div class="f">
+        <label>Passport photo <em>*</em></label>
+        <label class="drop" for="photo"><span class="thumb" id="photoThumb">📷</span><span class="dtext"><b>Upload photo</b><small id="photoName">JPG or PNG</small></span></label>
+        <input class="file" id="photo" name="photo" type="file" accept="image/*">
+      </div>
+      <div class="f">
+        <label>Aadhaar ID <em>*</em></label>
+        <label class="drop" for="aadhaar"><span class="thumb" id="aadhaarThumb">🪪</span><span class="dtext"><b>Upload Aadhaar</b><small id="aadhaarName">Photo or PDF</small></span></label>
+        <input class="file" id="aadhaar" name="aadhaar" type="file" accept="image/*,application/pdf">
+      </div>
+
+      <div class="sect"><b>4</b> Cricket profile</div>
+      <div class="f full"><label>Playing role <em>*</em></label><div class="chips" data-chips="role" data-opts="Batsman|Bowler|All Rounder|Wicket-keeper"></div></div>
+      <div class="f full"><label>Batting style</label><div class="chips" data-chips="batting" data-opts="Right-Hand Batsman (RHB)|Left-Hand Batsman (LHB)"></div></div>
+      <div class="f full"><label>Bowling style</label><div class="chips" data-chips="bowlingArm" data-opts="Right-Arm Bowler|Left-Arm Bowler"></div></div>
+      <div class="f full"><label>Bowling type</label><div class="chips" data-chips="bowlingType" data-opts="Fast|Medium-Pace|Off-Spinner|Leg-Spinner"></div></div>
+
+      <div class="sect"><b>5</b> Registration fee</div>
+      <div class="paybox full" id="paybox"></div>
+      <div class="f">
+        <label>Payment screenshot <em>*</em></label>
+        <label class="drop" for="payment"><span class="thumb" id="paymentThumb">🧾</span><span class="dtext"><b>Upload screenshot</b><small id="paymentName">Showing the UTR number</small></span></label>
+        <input class="file" id="payment" name="payment" type="file" accept="image/*,application/pdf">
+      </div>
+      <div class="f"><label for="utr">UTR number <em>*</em></label><input id="utr" name="utr" required maxlength="22" inputmode="numeric" placeholder="12-digit UTR / UPI ref no."><small class="hint">Find it in your UPI app under transaction details.</small></div>
+
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div class="decl full">
+        <p><b>Declaration:</b> I confirm that all the information provided by me is correct. I agree to follow the rules and regulations of <span data-club="name"></span> 2026. I understand that the organisers' decisions regarding tournament discipline and eligibility will be governed by the official tournament rules.</p>
+        <label class="consent"><input type="checkbox" id="consent"> <span><b>I agree</b> <em>*</em></span></label>
+      </div>
+
+      <div class="submit-row">
+        <button class="btn btn-gold" type="submit" id="submitBtn">Submit registration</button>
+        <span class="msg" id="formMsg" role="status" aria-live="polite"></span>
+        <div class="progress" id="progress"><i></i></div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="brand" style="margin-bottom:6px"><span class="crest" data-crest></span><b data-club="name"></b></div>
+      <small>© <span id="yr"></span> · <span data-club="city"></span></small>
+    </div>
+    <div class="links" id="footLinks"></div>
+  </div>
+</footer>
+
+<div class="mcta" id="mcta"><a class="btn btn-gold" href="#register">Register now</a></div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  const C = window.CLUB, I = C.info || {};
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const fmt = (d, o) => new Date(d.length === 10 ? d + "T00:00:00" : d).toLocaleDateString("en-IN", o);
+  const empty = t => `<div class="empty">${t}</div>`;
+
+  /* Branding */
+  document.title = `${C.name} — ${C.edition}`;
+  document.querySelectorAll("[data-club]").forEach(el => el.textContent = C[el.dataset.club] || "");
+  document.querySelectorAll("[data-crest]").forEach(el => el.innerHTML = C.logo ? `<img src="${esc(C.logo)}" alt="">` : esc(C.short));
+  const w = C.name.split(" ");
+  $("#heroName").innerHTML = w.length > 1 ? esc(w.slice(0,-1).join(" ")) + ` <span class="g">${esc(w.at(-1))}</span>` : esc(C.name);
+  $("#igBtn").href = C.instagram;
+  $("#yr").textContent = new Date().getFullYear();
+
+  /* Hero card: registration countdown while open, otherwise next match */
+  const REG = C.registration || {};
+  const deadline = REG.deadline ? new Date(REG.deadline) : null;
+  const regOpen = !deadline || Date.now() < deadline;
+  const nm = C.nextMatch || {};
+  let target;
+  if (regOpen && deadline) {
+    target = REG.deadline;
+    $("#nmTag").textContent = "Registration open";
+    $("#nmTitle").textContent = "Closes in";
+    $("#nmTeams").textContent = "Last date: " + fmt(REG.deadline,{day:"numeric",month:"long",year:"numeric"});
+    $("#nmMeta").innerHTML = REG.fee ? `<span>💰 Registration fee ₹${esc(REG.fee)} per player</span>` : "";
+    $("#nmNote").textContent = "Limited slots — register fast";
+  } else {
+    target = nm.date || I.startDate;
+    $("#nmTitle").textContent = nm.title || "Season kicks off";
+    $("#nmTeams").textContent = nm.teams || "";
+    const meta = [];
+    if (target) meta.push("📅 " + fmt(target,{weekday:"long",day:"numeric",month:"short"}) + " · " + new Date(target).toLocaleTimeString("en-IN",{hour:"numeric",minute:"2-digit"}));
+    if (nm.venue) meta.push("📍 " + esc(nm.venue));
+    if (I.format) meta.push("🏏 " + esc(I.format));
+    $("#nmMeta").innerHTML = meta.map(x => `<span>${x}</span>`).join("");
+    $("#nmNote").textContent = nm.note || "";
+  }
+  function tick(){
+    const s = Math.max(0, Math.floor((new Date(target) - Date.now())/1000));
+    if (!target || isNaN(s)) { $("#countdown").style.display = "none"; return; }
+    const parts = [[Math.floor(s/86400),"Days"],[Math.floor(s%86400/3600),"Hrs"],[Math.floor(s%3600/60),"Min"],[s%60,"Sec"]];
+    $("#countdown").innerHTML = parts.map(([v,l]) => `<div><b>${String(v).padStart(2,"0")}</b><small>${l}</small></div>`).join("");
+  }
+  tick(); setInterval(tick, 1000);
+
+  /* Stat strip */
+  const PT = C.pointsTable || [], R = C.results || [], F = C.fixtures || [];
+  const stats = [
+    [I.prizePool, "Prize pool"],
+    [PT.length || "—", "Teams"],
+    [R.length, "Matches played"],
+    [F.length, "Upcoming"],
+    [REG.fee ? "₹" + REG.fee : "", "Reg. fee / player"]
+  ].filter(s => s[0] !== undefined && s[0] !== "");
+  $("#statStrip").innerHTML = stats.map(([v,l]) => `<div class="stat"><b>${esc(v)}</b><span>${l}</span></div>`).join("");
+  $("#statStrip").style.gridTemplateColumns = window.innerWidth > 760 ? `repeat(${stats.length},1fr)` : "";
+
+  /* Points table */
+  const sorted = [...PT].sort((a,b) => b.pts - a.pts || parseFloat(b.nrr) - parseFloat(a.nrr));
+  const q = C.qualifyTop || 0;
+  $("#tableWrap").innerHTML = sorted.length ? `
+    <div class="tablecard"><div class="scroll"><table>
+      <thead><tr><th>#</th><th class="l">Team</th><th>P</th><th>W</th><th>L</th><th>NR</th><th>NRR</th><th>Pts</th></tr></thead>
+      <tbody>${sorted.map((t,i) => `<tr class="${i<q?'q':''}"><td class="pos">${i+1}</td><td class="l team">${esc(t.team)}</td>
+        <td>${esc(t.p)}</td><td>${esc(t.w)}</td><td>${esc(t.l)}</td><td>${esc(t.nr)}</td><td>${esc(t.nrr)}</td><td class="pts">${esc(t.pts)}</td></tr>`).join("")}</tbody>
+    </table></div>${q ? `<div class="legend"><i></i> Top ${q} qualify for the knockouts</div>` : ""}</div>`
+    : empty("Points table goes live after the first match. 🏏");
+
+  /* Results */
+  $("#resultsWrap").innerHTML = R.length ? `<div class="results">${R.map(r => `
+    <article class="res">
+      <div class="top"><span>${fmt(r.date,{day:"numeric",month:"short"})}</span><span>Result</span></div>
+      <div class="row ${r.winner===r.teamA?'win':''}"><span class="t">${esc(r.teamA)}</span><span class="s">${esc(r.scoreA)}</span></div>
+      <div class="row ${r.winner===r.teamB?'win':''}"><span class="t">${esc(r.teamB)}</span><span class="s">${esc(r.scoreB)}</span></div>
+      <div class="sum">${esc(r.winner ? r.winner + " " + (r.summary||"").replace(/^won/i,"won") : r.summary)}</div>
+      ${r.mom ? `<div class="mom">⭐ Player of the match: <b>${esc(r.mom)}</b></div>` : ""}
+    </article>`).join("")}</div>` : empty("No matches played yet — results will appear here after each game.");
+
+  /* Leaderboards */
+  function board(list, key, unit, sub){
+    if (!list.length) return empty("Stats appear once the season starts.");
+    const max = list[0][key] || 1;
+    return list.map((p,i) => `<div class="lead-row ${i===0?'first':''}"><span class="n">${i+1}</span>
+      <div class="p"><b>${esc(p.name)}</b><small>${esc(p.team||"")}</small><div class="bar"><i style="width:${p[key]/max*100}%"></i></div></div>
+      <div class="v"><b>${esc(p[key])}</b><small>${unit} · ${sub(p)}</small></div></div>`).join("");
+  }
+  $("#batList").innerHTML = board([...(C.batting||[])].sort((a,b)=>b.runs-a.runs), "runs", "runs", p => `HS ${esc(p.hs)} · SR ${Number(p.sr).toFixed(0)}`);
+  $("#bowlList").innerHTML = board([...(C.bowling||[])].sort((a,b)=>b.wickets-a.wickets||a.econ-b.econ), "wickets", "wkts", p => `Best ${esc(p.best)} · Econ ${Number(p.econ).toFixed(1)}`);
+
+  /* Fixtures */
+  $("#fxWrap").innerHTML = F.length ? `<div class="fixtures">${F.map(f => `
+    <div class="fx"><div class="d">${fmt(f.date,{weekday:"short",day:"numeric",month:"short"})}</div>
+    <div class="t">${esc(f.title)}</div><div class="v">${esc(f.time)} · ${esc(f.venue)}</div></div>`).join("")}</div>`
+    : empty("Fixtures will be announced soon — follow us on Instagram.");
+
+  /* Perks */
+  $("#perks").innerHTML = [
+    REG.fee && `Registration fee ₹${esc(REG.fee)} per player (UPI)`,
+    "Keep your photo, Aadhaar and payment screenshot ready",
+    I.prizePool && `Prize pool of ${esc(I.prizePool)}`,
+    I.format && esc(I.format),
+    "Live points table & player stats on this page"
+  ].filter(Boolean).map(x => `<li>${x}</li>`).join("");
+  if (deadline) $("#deadlineLine").textContent = (regOpen ? "⏰ Last date: " : "Registration closed on ") + fmt(REG.deadline,{day:"numeric",month:"long",year:"numeric"});
+
+  /* Footer */
+  const links = [`<a href="${esc(C.instagram)}" target="_blank" rel="noopener">Instagram ${esc(C.instagramHandle||"")}</a>`];
+  if (C.whatsapp) links.push(`<a href="https://wa.me/${esc(C.whatsapp)}" target="_blank" rel="noopener">WhatsApp</a>`);
+  if (C.contactEmail) links.push(`<a href="mailto:${esc(C.contactEmail)}">Email</a>`);
+  $("#footLinks").innerHTML = links.join("");
+
+  const mcta = $("#mcta");
+  new IntersectionObserver(([e]) => mcta.classList.toggle("hide", e.isIntersecting), {threshold:.05}).observe($("#register"));
+
+  /* ---------- Registration form ---------- */
+  const form = $("#regForm"), msg = $("#formMsg"), btn = $("#submitBtn");
+  const setMsg = (t, c) => { msg.textContent = t; msg.className = "msg " + (c||""); };
+
+  if (!regOpen) {
+    form.innerHTML = `<div class="closed"><h3>Registrations closed</h3>
+      <p>Registration for this season ended on ${fmt(REG.deadline,{day:"numeric",month:"long"})}. Follow us for match updates.</p>
+      <a class="btn btn-gold" href="${esc(C.instagram)}" target="_blank" rel="noopener">Follow on Instagram</a></div>`;
+    $("#mcta").remove();
+  } else {
+    $("#district").value = C.defaultDistrict || "";
+    $("#dob").max = new Date().toISOString().slice(0,10);
+
+    // Chips (radio groups)
+    form.querySelectorAll("[data-chips]").forEach(box => {
+      const n = box.dataset.chips;
+      box.innerHTML = box.dataset.opts.split("|").map((o,i) =>
+        `<input type="radio" name="${n}" id="${n}${i}" value="${esc(o)}"><label for="${n}${i}">${esc(o)}</label>`).join("");
+    });
+
+    // Payment box: QR + UPI ID + buttons that open the player's UPI app with the amount filled in
+    const fee = REG.fee || 0;
+    const q = `pa=${encodeURIComponent(REG.upiId||"")}&pn=${encodeURIComponent(REG.payeeName||C.name)}&am=${fee}&cu=INR&tn=${encodeURIComponent(C.short + " registration")}`;
+    const upiLink = "upi://pay?" + q;
+    const isAndroid = /Android/i.test(navigator.userAgent), isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const appBtns = isIOS
+      // iPhone has no "choose app" screen for upi:// — give one button per app
+      ? `<a class="btn btn-gold" href="${upiLink}">Pay ₹${esc(fee)} with UPI app</a>
+         <div class="row">
+           <a class="app" href="gpay://upi/pay?${q}">GPay</a>
+           <a class="app" href="phonepe://pay?${q}">PhonePe</a>
+           <a class="app" href="paytmmp://pay?${q}">Paytm</a>
+         </div>`
+      : `<a class="btn btn-gold" href="${upiLink}">Pay ₹${esc(fee)} with UPI app</a>
+         <small>Opens GPay, PhonePe, Paytm, BHIM or any UPI app</small>`;
+    $("#paybox").innerHTML = `
+      <div class="qrwrap">
+        <div class="qr" id="qrBox">${REG.qrImage ? `<img src="${esc(REG.qrImage)}" alt="UPI payment QR code">` : ""}</div>
+        <div class="qrcap">${REG.qrImage ? `Scan &amp; pay ₹${esc(fee)}` : "Scan with any UPI app"}</div>
+      </div>
+      <div style="flex:1;min-width:200px">
+        <small>Pay registration fee</small>
+        <div class="amt">₹${esc(fee)} only</div>
+        ${REG.upiId ? `<div class="upi">UPI ID: <code>${esc(REG.upiId)}</code> <button type="button" class="copy" id="copyUpi">Copy</button></div>` : ""}
+        ${(isAndroid || isIOS) && REG.upiId ? `<div class="payapps">${appBtns}</div>` : ""}
+        <small style="margin-top:10px">After paying, upload the screenshot and enter the UTR number below.</small>
+      </div>`;
+    if (!REG.qrImage && REG.upiId) {
+      // Build a QR with the amount pre-filled
+      const qs = document.createElement("script");
+      qs.src = "qrcode.js";   // bundled QR generator (MIT licence)
+      qs.onload = () => { const qr = qrcode(0, "M"); qr.addData(upiLink); qr.make(); $("#qrBox").innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); };
+      qs.onerror = () => { $("#qrBox").closest(".qrwrap").style.display = "none"; };
+      document.head.appendChild(qs);
+    } else if (!REG.qrImage) $("#qrBox").closest(".qrwrap").style.display = "none";
+    const cp = $("#copyUpi");
+    if (cp) cp.onclick = () => navigator.clipboard?.writeText(REG.upiId).then(() => { cp.textContent = "Copied ✓"; setTimeout(() => cp.textContent = "Copy", 1500); });
+
+    // File inputs: preview + validation
+    const FILES = { photo: "Passport photo", aadhaar: "Aadhaar ID", payment: "Payment screenshot" };
+    Object.keys(FILES).forEach(id => {
+      const input = $("#" + id);
+      input.addEventListener("change", () => {
+        const f = input.files[0], drop = input.previousElementSibling, thumb = $("#" + id + "Thumb");
+        if (!f) return;
+        if (f.size > 10 * 1024 * 1024) { input.value = ""; setMsg(`${FILES[id]} is larger than 10 MB.`, "err"); return; }
+        drop.classList.add("has");
+        $("#" + id + "Name").textContent = f.name;
+        thumb.innerHTML = f.type.startsWith("image/") ? `<img src="${URL.createObjectURL(f)}" alt="">` : "📄";
+        setMsg("");
+      });
+    });
+
+    // Shrink photos before upload (phone photos are often 3–8 MB)
+    function toB64(blob){ return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(",")[1]); r.onerror = rej; r.readAsDataURL(blob); }); }
+    function compressImage(file, maxSide = 1600){
+      return new Promise((res, rej) => {
+        const img = new Image();
+        img.onload = () => {
+          const k = Math.min(1, maxSide / Math.max(img.width, img.height));
+          const c = document.createElement("canvas");
+          c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+          c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+          res({ name: file.name.replace(/\.[^.]+$/, "") + ".jpg", mimeType: "image/jpeg", data: c.toDataURL("image/jpeg", 0.85).split(",")[1] });
+        };
+        img.onerror = rej;
+        img.src = URL.createObjectURL(file);
+      });
+    }
+    async function packFile(id){
+      const f = $("#" + id).files[0];
+      if (!f) return null;
+      if (f.type.startsWith("image/")) {
+        try { return await compressImage(f); } catch (e) { /* e.g. HEIC the browser can't read — send as-is */ }
+      }
+      if (f.size > 8 * 1024 * 1024) throw new Error(`${FILES[id]} is too large — please upload a smaller file or a screenshot.`);
+      return { name: f.name, mimeType: f.type || "application/octet-stream", data: await toB64(f) };
+    }
+
+    form.addEventListener("submit", async e => {
+      e.preventDefault();
+      const d = Object.fromEntries(new FormData(form).entries());
+      ["photo","aadhaar","payment"].forEach(k => delete d[k]);
+      d.phone = (d.phone||"").replace(/\D/g,"").replace(/^91(?=\d{10}$)/,"");
+      const need = [["name","player's name"],["father","father's name"],["dob","date of birth"],["address","full address"],["village","village / town"],["district","district"]];
+      for (const [k, label] of need) if (!(d[k]||"").trim()) return setMsg(`Please enter the ${label}.`, "err");
+      if (!/^[6-9]\d{9}$/.test(d.phone)) return setMsg("Please enter a valid 10-digit mobile number.", "err");
+      if (d.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.email)) return setMsg("Please check the email address.", "err");
+      for (const id of ["photo","aadhaar"]) if (!$("#"+id).files[0]) return setMsg(`Please upload the ${FILES[id].toLowerCase()}.`, "err");
+      if (!d.role) return setMsg("Please choose a playing role.", "err");
+      if (!$("#payment").files[0]) return setMsg("Please upload the payment screenshot.", "err");
+      d.utr = (d.utr||"").replace(/\s/g,"");
+      if (!/^[A-Za-z0-9]{10,22}$/.test(d.utr)) return setMsg("Please enter a valid UTR number (usually 12 digits).", "err");
+      if (!$("#consent").checked) return setMsg("Please accept the declaration.", "err");
+      if (!C.formEndpoint || C.formEndpoint.startsWith("PASTE_")) return setMsg("Form not connected yet — add the Apps Script URL in data.js (see README).", "err");
+
+      btn.disabled = true; btn.textContent = "Uploading…"; setMsg("Uploading documents, please wait — don't close this page."); $("#progress").style.display = "block";
+      try {
+        d.files = { photo: await packFile("photo"), aadhaar: await packFile("aadhaar"), payment: await packFile("payment") };
+        // text/plain body avoids a CORS preflight, which Apps Script can't answer
+        const res = await fetch(C.formEndpoint, { method: "POST", body: JSON.stringify({ ...d, source: location.href }) });
+        const out = await res.json();
+        if (!out.ok) throw new Error(out.error || "Failed");
+        form.innerHTML = `<div class="done"><div class="tick">✓</div><h3>Registration submitted!</h3>
+          <p>Your registration ID is <b>${esc(out.id)}</b>. Please take a screenshot of this.<br>
+          The organisers will verify your payment and contact you on <b>${esc(d.phone)}</b>.</p></div>`;
+        $("#mcta")?.remove();
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false; btn.textContent = "Submit registration"; $("#progress").style.display = "none";
+        setMsg(err.message && !/fetch|json|Failed$/i.test(err.message) ? err.message : "Couldn't submit right now. Please check your internet and try again, or DM us on Instagram.", "err");
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
