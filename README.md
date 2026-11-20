@@ -70,6 +70,23 @@ Quicker alternative: drag the folder onto **app.netlify.com/drop**.
 
 ---
 
+## ✏️ Admin panel — update the site without code
+
+Open **https://nineteensolutions.github.io/sambalpur-cricket-league/admin.html** → enter the admin password
+(the `ADMIN_PASSWORD` from Step 1).
+
+From a phone you can change:
+- **Registration & payment** — last date, fee, UPI ID, payment QR (upload your own or use the auto QR)
+- **Next match**, **Points table** (played & points are calculated for you), **Results**
+- **Orange cap / Purple cap** leaderboards, **Fixtures**
+- **Tournament info** (prize pool, format) and **branding** (name, tagline, logo, Instagram, WhatsApp)
+- See registration counts (total / verified / pending / rejected) and open the registrations sheet
+
+Tap **Save & publish** — the website updates immediately (refresh it to see).
+The admin page isn't linked from the site and is hidden from search engines; only people with the password can save.
+Content is stored in a private file in the organiser's Google Drive ("SCL website content.json");
+`data.js` only holds the starting content and the `formEndpoint` link.
+
 ## Handling registrations
 
 - Open the sheet → each row has links to the photo, Aadhaar and payment screenshot.
