@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="loading">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -219,6 +219,13 @@
   @media (max-width:860px){.reg-grid{grid-template-columns:1fr}}
   @media (max-width:560px){form{grid-template-columns:1fr;padding:20px}}
 
+  /* hide the page until live content has loaded (max ~5s, then shown anyway) */
+  html.loading body{opacity:0;animation:reveal 0s 5s forwards}
+  @keyframes reveal{to{opacity:1}}
+  body{transition:opacity .25s}
+  .credit{display:block;margin-top:14px;font-size:.8rem;opacity:.55;text-decoration:none}
+  .credit:hover{opacity:.9}
+  .credit b{color:var(--gold-2);font-weight:700}
   footer{background:var(--night);color:var(--cream);padding:40px 0 90px;border-top:1px solid var(--line)}
   footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
   footer .links{display:flex;gap:18px;flex-wrap:wrap;font-weight:600;font-size:.92rem}
@@ -391,14 +398,32 @@
     </div>
     <div class="links" id="footLinks"></div>
   </div>
+  <div class="wrap"><a class="credit" href="https://nineteensolutions.in/" target="_blank" rel="noopener">A site by <b>Nineteen Solutions</b></a></div>
 </footer>
 
 <div class="mcta" id="mcta"><a class="btn btn-gold" href="#register">Register now</a></div>
 
 <script src="data.js"></script>
 <script>
-(function(){
-  const C = window.CLUB, I = C.info || {};
+(async function(){
+  /* Load the latest content saved from admin.html, on top of the defaults in data.js */
+  const BASE = window.CLUB;
+  let C = BASE;
+  if (BASE.formEndpoint && !BASE.formEndpoint.startsWith("PASTE_")) {
+    try {
+      const ctrl = new AbortController(); const t = setTimeout(() => ctrl.abort(), 5000);
+      const res = await fetch(BASE.formEndpoint + "?action=content", { signal: ctrl.signal });
+      clearTimeout(t);
+      const j = await res.json();
+      if (j.ok && j.content) {
+        C = { ...BASE, ...j.content, formEndpoint: BASE.formEndpoint };
+        ["registration","info","nextMatch"].forEach(k => C[k] = { ...(BASE[k]||{}), ...(j.content[k]||{}) });
+      }
+    } catch (e) { console.warn("Using data.js content", e); }
+  }
+  window.CLUB = C;
+  document.documentElement.classList.remove("loading");
+  const I = C.info || {};
   const $ = s => document.querySelector(s);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const fmt = (d, o) => new Date(d.length === 10 ? d + "T00:00:00" : d).toLocaleDateString("en-IN", o);

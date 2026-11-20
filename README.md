@@ -13,6 +13,7 @@ Each registration:
 
 ```
 index.html                    ← the website
+admin.html                    ← ADMIN PANEL: edit everything from your phone (password protected)
 data.js                       ← EDIT THIS: dates, fee, UPI ID, teams, results, stats
 qrcode.js                     ← makes the payment QR code (don't edit)
 google-apps-script/Code.gs    ← paste into Google Apps Script (form backend)
@@ -34,6 +35,9 @@ Use the organiser's Gmail account for this — files and emails will go there.
    Copy the **Web app URL** (ends in `/exec`).
 6. Paste it into `formEndpoint` in `data.js`.
 
+7. **Admin password:** in Apps Script click ⚙️ **Project Settings** → **Script Properties** → **Add script property**:
+   Property `ADMIN_PASSWORD`, Value: a strong password only the organisers know → **Save**.
+
 Check: open the `/exec` URL in a browser → you should see `"Registration endpoint is running"`.
 
 > Edited `Code.gs` later? **Deploy → Manage deployments → ✏️ → Version: New version → Deploy** (URL stays the same).
@@ -41,7 +45,7 @@ Check: open the `/exec` URL in a browser → you should see `"Registration endpo
 ## Step 2 — Fill in data.js
 
 - `registration.deadline` — form closes automatically after this (currently **20 Nov 2026, 11:59 PM**).
-  **To extend, just change the date** (also update `DEADLINE` in Code.gs).
+  **Easiest: change it in the admin panel** — the form and the server both follow it.
 - `registration.upiId` — the organiser's UPI ID. This powers:
   - a **QR code with ₹500 pre-filled**, generated automatically (players on a laptop scan it with their phone)
   - a **"Pay ₹500 with UPI app"** button on phones — on Android it opens the "choose app" screen

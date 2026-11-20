@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>SCL Admin</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='44' fill='%23d9a93b'/><text x='50' y='62' font-size='34' text-anchor='middle' font-family='Arial' font-weight='bold' fill='%23070b14'>SCL</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--night:#070b14;--night-2:#0e1524;--night-3:#151f33;--line:rgba(255,255,255,.09);--gold:#d9a93b;--gold-2:#f3cf6b;--sunset:#e8742c;--paper:#fbf8f1;--ink:#121722;--muted:#6a7180;--win:#2f9e63;--loss:#d0423a}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Manrope,system-ui,sans-serif;background:#eef0f4;color:var(--ink);line-height:1.45;-webkit-font-smoothing:antialiased;padding-bottom:110px}
+  h1,h2,h3{font-family:Anton,Impact,sans-serif;font-weight:400;letter-spacing:.02em;text-transform:uppercase;line-height:1.05}
+  a{color:inherit}
+  .wrap{max-width:860px;margin:0 auto;padding:0 16px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 18px;border-radius:999px;font:inherit;font-weight:800;font-size:.92rem;border:0;cursor:pointer;text-decoration:none;white-space:nowrap}
+  .btn:disabled{opacity:.6;cursor:wait}
+  .gold{background:linear-gradient(180deg,var(--gold-2),var(--gold));color:var(--night)}
+  .dark{background:var(--night);color:#fff}
+  .ghost{background:#fff;color:var(--ink);border:1.5px solid #d7dbe3}
+  .sm{padding:7px 12px;font-size:.8rem}
+  .danger{background:#fff;color:var(--loss);border:1.5px solid #f0c9c6}
+
+  /* Login */
+  .login{min-height:100vh;display:grid;place-items:center;background:radial-gradient(ellipse 80% 50% at 50% 110%,rgba(232,116,44,.45),transparent 60%),var(--night);padding:20px}
+  .login .card{background:var(--paper);border-radius:20px;padding:30px 26px;width:100%;max-width:380px;text-align:center}
+  .crest{width:58px;height:58px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--gold-2),var(--gold) 60%,#a77a1c);display:grid;place-items:center;font-family:Anton;color:var(--night);margin:0 auto 14px;font-size:1.2rem}
+  .login h1{font-size:1.9rem;margin-bottom:4px}
+  .login p{color:var(--muted);font-size:.9rem;margin-bottom:20px}
+  .login input{margin-bottom:12px;text-align:center}
+  .login .btn{width:100%}
+  .login .err{color:var(--loss);font-weight:700;font-size:.88rem;margin-top:10px;min-height:1.2em}
+  .credit{display:block;margin-top:18px;font-size:.78rem;color:var(--muted);text-decoration:none}
+  .credit b{color:var(--ink)}
+
+  /* App */
+  header.top{position:sticky;top:0;z-index:20;background:var(--night);color:#fff}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;gap:10px}
+  header.top .t{display:flex;align-items:center;gap:10px}
+  header.top .crest{width:34px;height:34px;margin:0;font-size:.8rem}
+  header.top h1{font-size:1.2rem}
+  header.top .acts{display:flex;gap:8px}
+  header.top .ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}
+  .stat{background:#fff;border-radius:14px;padding:14px;text-align:center}
+  .stat b{font-family:Anton;font-weight:400;font-size:1.9rem;display:block;line-height:1}
+  .stat span{font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+  .stat.v b{color:var(--win)} .stat.p b{color:var(--sunset)} .stat.r b{color:var(--loss)}
+  .sheetbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+  @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  details.sec{background:#fff;border-radius:16px;margin-bottom:12px;overflow:hidden;border:1px solid #e3e6ec}
+  details.sec > summary{list-style:none;cursor:pointer;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+  details.sec > summary::-webkit-details-marker{display:none}
+  details.sec > summary h2{font-size:1.25rem}
+  details.sec > summary small{color:var(--muted);font-size:.8rem;font-weight:600;display:block;margin-top:2px;text-transform:none;font-family:Manrope,system-ui,sans-serif}
+  details.sec > summary::after{content:"+";font-family:Anton;font-size:1.5rem;color:var(--gold)}
+  details.sec[open] > summary::after{content:"–"}
+  details.sec[open] > summary{border-bottom:1px solid #eef0f4}
+  .body{padding:18px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .grid .full{grid-column:1/-1}
+  @media (max-width:560px){.grid{grid-template-columns:1fr}}
+  label.f{display:flex;flex-direction:column;gap:5px;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#3a4152}
+  label.f small{text-transform:none;letter-spacing:0;font-weight:600;color:var(--muted)}
+  input,select,textarea{font:inherit;font-size:.98rem;padding:10px 12px;border-radius:10px;border:1.5px solid #d7dbe3;background:#fff;color:var(--ink);width:100%;min-width:0}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(217,169,59,.22)}
+  input[readonly]{background:#f4f5f8;color:var(--muted)}
+  .hint{font-size:.82rem;color:var(--muted);margin-bottom:12px}
+
+  /* list editors */
+  .items{display:grid;gap:10px}
+  .item{border:1.5px solid #e3e6ec;border-radius:12px;padding:12px;position:relative;background:#fbfbfd}
+  .item .row{display:grid;gap:8px}
+  .item .tools{display:flex;gap:6px;justify-content:flex-end;margin-top:8px}
+  .item .num{position:absolute;top:-10px;left:12px;background:var(--night);color:var(--gold-2);font-family:Anton;font-size:.8rem;padding:1px 9px;border-radius:999px}
+  .listbar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .empty{border:1.5px dashed #d7dbe3;border-radius:12px;padding:18px;text-align:center;color:var(--muted);font-weight:600;font-size:.9rem}
+
+  /* image pickers */
+  .imgpick{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+  .imgpick .pv{width:110px;height:110px;border-radius:12px;border:1.5px solid #e3e6ec;background:#f4f5f8 center/contain no-repeat;display:grid;place-items:center;color:var(--muted);font-size:.75rem;font-weight:700;text-align:center;padding:6px}
+  .imgpick .pv.round{border-radius:50%}
+  .imgpick .btns{display:flex;flex-direction:column;gap:8px}
+  .file{display:none}
+
+  /* save bar */
+  .savebar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid #e3e6ec}
+  .savebar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:72px}
+  .savebar .st{font-size:.88rem;font-weight:700;color:var(--muted)}
+  .savebar .st.dirty{color:var(--sunset)} .savebar .st.ok{color:var(--win)} .savebar .st.err{color:var(--loss)}
+  .savebar .btn{padding:13px 26px;font-size:1rem}
+  footer.cr{text-align:center;padding:24px 0 10px}
+  .hidden{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<section class="login" id="loginView">
+  <form class="card" id="loginForm">
+    <div class="crest">SCL</div>
+    <h1>Admin</h1>
+    <p>Edit the website: matches, points table, results, players, registration & payment.</p>
+    <input type="password" id="pw" placeholder="Admin password" autocomplete="current-password" required>
+    <button class="btn gold" id="loginBtn" type="submit">Sign in</button>
+    <div class="err" id="loginErr"></div>
+    <a class="credit" href="https://nineteensolutions.in/" target="_blank" rel="noopener">A site by <b>Nineteen Solutions</b></a>
+  </form>
+</section>
+
+<!-- APP -->
+<div id="appView" class="hidden">
+  <header class="top"><div class="wrap">
+    <div class="t"><div class="crest" id="topCrest">SCL</div><h1>Admin</h1></div>
+    <div class="acts">
+      <a class="btn ghost sm" href="./" target="_blank" rel="noopener">View site ↗</a>
+      <button class="btn ghost sm" id="logout" type="button">Log out</button>
+    </div>
+  </div></header>
+
+  <main class="wrap">
+    <div class="stats" id="stats">
+      <div class="stat"><b id="sTotal">–</b><span>Registrations</span></div>
+      <div class="stat v"><b id="sVer">–</b><span>Verified</span></div>
+      <div class="stat p"><b id="sPen">–</b><span>Pending</span></div>
+      <div class="stat r"><b id="sRej">–</b><span>Rejected</span></div>
+    </div>
+    <div class="sheetbar">
+      <a class="btn dark sm" id="sheetLink" target="_blank" rel="noopener" href="#">Open registrations sheet ↗</a>
+      <button class="btn ghost sm" id="refreshStats" type="button">Refresh numbers</button>
+    </div>
+
+    <div id="sections"></div>
+
+    <footer class="cr"><a class="credit" href="https://nineteensolutions.in/" target="_blank" rel="noopener">A site by <b>Nineteen Solutions</b></a></footer>
+  </main>
+
+  <div class="savebar"><div class="wrap">
+    <span class="st" id="saveStatus">All changes saved</span>
+    <button class="btn gold" id="saveBtn" type="button">Save &amp; publish</button>
+  </div></div>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  const BASE = window.CLUB || {};
+  const API = BASE.formEndpoint || "";
+  const connected = API && !API.startsWith("PASTE_");
+  const $ = s => document.querySelector(s);
+  let password = "";
+  try { password = sessionStorage.getItem("scl_admin_pw") || ""; } catch(e) {}
+  let S = null;            // the content being edited
+  let dirty = false;
+
+  /* ---------- helpers ---------- */
+  function h(tag, attrs = {}, ...kids){
+    const el = document.createElement(tag);
+    for (const [k,v] of Object.entries(attrs)) {
+      if (k === "class") el.className = v;
+      else if (k.startsWith("on")) el.addEventListener(k.slice(2), v);
+      else if (v !== undefined && v !== null && v !== false) el.setAttribute(k, v === true ? "" : v);
+    }
+    kids.flat().forEach(k => k != null && el.append(k.nodeType ? k : document.createTextNode(k)));
+    return el;
+  }
+  const clone = o => JSON.parse(JSON.stringify(o));
+  const api = body => fetch(API, { method: "POST", body: JSON.stringify(body) }).then(r => r.json());
+  const toLocal = iso => iso ? String(iso).slice(0,16) : "";                 // "2026-11-20T23:59:59+05:30" → input value
+  const fromLocal = v => v ? v + ":00+05:30" : "";                           // IST
+  function markDirty(){ dirty = true; setStatus("Unsaved changes", "dirty"); }
+  function setStatus(t, cls){ const el = $("#saveStatus"); el.textContent = t; el.className = "st " + (cls||""); }
+  window.addEventListener("beforeunload", e => { if (dirty) { e.preventDefault(); e.returnValue = ""; } });
+
+  function get(path){ return path.split(".").reduce((o,k) => (o||{})[k], S); }
+  function set(path, val){
+    const ks = path.split("."); let o = S;
+    ks.slice(0,-1).forEach(k => { o[k] = o[k] || {}; o = o[k]; });
+    o[ks.at(-1)] = val; markDirty();
+  }
+
+  /* a bound input for S[path] */
+  function field(path, label, opts = {}){
+    const type = opts.type || "text";
+    let input;
+    if (type === "textarea") input = h("textarea", { rows: 2 });
+    else if (type === "select") input = h("select", {}, opts.options.map(o => h("option", { value: o }, o || "—")));
+    else input = h("input", { type, placeholder: opts.placeholder || "", step: opts.step, min: opts.min, inputmode: opts.inputmode });
+    const raw = get(path);
+    input.value = type === "datetime-local" ? toLocal(raw) : (raw ?? "");
+    input.addEventListener("input", () => {
+      let v = input.value;
+      if (type === "datetime-local") v = fromLocal(v);
+      if (type === "number") v = v === "" ? "" : Number(v);
+      set(path, v);
+      opts.onChange && opts.onChange(v);
+    });
+    return h("label", { class: "f" + (opts.full ? " full" : "") }, h("span", {}, label, opts.help ? h("small", {}, " " + opts.help) : null), input);
+  }
+
+  function section(title, sub, body, open){
+    return h("details", { class: "sec", open: !!open }, h("summary", {}, h("div", {}, h("h2", {}, title), h("small", {}, sub))), h("div", { class: "body" }, body));
+  }
+
+  /* generic editable list (results, players, fixtures, table) */
+  function listEditor(key, cols, opts = {}){
+    const box = h("div");
+    function render(){
+      box.innerHTML = "";
+      const arr = S[key] = S[key] || [];
+      const items = h("div", { class: "items" });
+      if (!arr.length) items.append(h("div", { class: "empty" }, opts.emptyText || "Nothing here yet — the site shows a “coming soon” message."));
+      arr.forEach((it, i) => {
+        const row = h("div", { class: "row", style: `grid-template-columns:${opts.template || "repeat(auto-fit,minmax(130px,1fr))"}` });
+        cols.forEach(c => {
+          let input;
+          if (c.type === "select") {
+            const options = typeof c.options === "function" ? c.options(it) : c.options;
+            input = h("select", {}, options.map(o => h("option", { value: o }, o || "—")));
+          } else {
+            input = h("input", { type: c.type || "text", placeholder: c.placeholder || c.label, list: c.list, step: c.step, inputmode: c.inputmode, readonly: !!c.readonly });
+          }
+          input.value = it[c.key] ?? "";
+          input.addEventListener(c.type === "select" ? "change" : "input", () => {
+            it[c.key] = c.type === "number" ? (input.value === "" ? "" : Number(input.value)) : input.value;
+            opts.onEdit && opts.onEdit(it, c.key, row);
+            markDirty();
+          });
+          input.dataset.key = c.key;
+          row.append(h("label", { class: "f", style: c.span ? `grid-column:span ${c.span}` : "" }, c.label, input));
+        });
+        const tools = h("div", { class: "tools" },
+          i > 0 ? h("button", { class: "btn ghost sm", type: "button", onclick: () => { [arr[i-1], arr[i]] = [arr[i], arr[i-1]]; markDirty(); render(); } }, "↑") : null,
+          i < arr.length-1 ? h("button", { class: "btn ghost sm", type: "button", onclick: () => { [arr[i+1], arr[i]] = [arr[i], arr[i+1]]; markDirty(); render(); } }, "↓") : null,
+          h("button", { class: "btn danger sm", type: "button", onclick: () => { arr.splice(i,1); markDirty(); render(); } }, "Delete"));
+        items.append(h("div", { class: "item" }, h("span", { class: "num" }, String(i+1)), row, tools));
+      });
+      box.append(items, h("div", { class: "listbar" },
+        h("button", { class: "btn dark sm", type: "button", onclick: () => { const n = opts.blank(); opts.addTop ? arr.unshift(n) : arr.push(n); markDirty(); render(); } }, "+ " + (opts.addLabel || "Add")),
+        arr.length ? h("button", { class: "btn danger sm", type: "button", onclick: () => { if (window.confirm ? confirm("Remove all " + arr.length + " items?") : true) { S[key] = []; markDirty(); render(); } } }, "Clear all") : null));
+      opts.afterRender && opts.afterRender();
+    }
+    render();
+    box.rerender = render;
+    return box;
+  }
+
+  /* image picker (logo / QR) — stores a small data: URL in the content */
+  function imagePicker(path, { label, round, max = 512, type = "image/png", autoLabel, help }){
+    const pv = h("div", { class: "pv" + (round ? " round" : "") });
+    const file = h("input", { type: "file", accept: "image/*", class: "file" });
+    function show(){
+      const v = get(path);
+      pv.style.backgroundImage = v ? `url("${v}")` : "";
+      pv.textContent = v ? "" : (autoLabel || "None");
+    }
+    file.addEventListener("change", () => {
+      const f = file.files[0]; if (!f) return;
+      const img = new Image();
+      img.onload = () => {
+        const k = Math.min(1, max / Math.max(img.width, img.height));
+        const c = document.createElement("canvas"); c.width = Math.round(img.width*k); c.height = Math.round(img.height*k);
+        const g = c.getContext("2d"); g.imageSmoothingQuality = "high"; g.drawImage(img, 0, 0, c.width, c.height);
+        set(path, c.toDataURL(type, 0.9)); show();
+      };
+      img.src = URL.createObjectURL(f);
+    });
+    show();
+    return h("div", { class: "full" },
+      h("label", { class: "f", style: "margin-bottom:8px" }, label, help ? h("small", {}, help) : null),
+      h("div", { class: "imgpick" }, pv, h("div", { class: "btns" },
+        h("button", { class: "btn dark sm", type: "button", onclick: () => file.click() }, "Upload image"),
+        h("button", { class: "btn ghost sm", type: "button", onclick: () => { set(path, ""); show(); } }, autoLabel ? "Use " + autoLabel : "Remove")),
+        file));
+  }
+
+  /* ---------- build the editor ---------- */
+  function teams(){ return (S.pointsTable || []).map(t => t.team).filter(Boolean); }
+  function refreshTeamList(){
+    const dl = $("#teamList") || document.body.appendChild(h("datalist", { id: "teamList" }));
+    dl.innerHTML = ""; teams().forEach(t => dl.append(h("option", { value: t })));
+  }
+
+  function build(){
+    const root = $("#sections"); root.innerHTML = "";
+    S.registration = S.registration || {}; S.info = S.info || {}; S.nextMatch = S.nextMatch || {};
+    $("#topCrest").innerHTML = S.logo ? `<img src="${S.logo}" alt="" style="width:100%;height:100%;border-radius:50%;object-fit:cover">` : "SCL";
+
+    // 1. Registration & payment
+    root.append(section("Registration & payment", "Last date, fee, UPI ID and QR code", h("div", { class: "grid" },
+      field("registration.deadline", "Last date & time", { type: "datetime-local", help: "(IST) — form closes after this" }),
+      field("registration.fee", "Registration fee (₹)", { type: "number", min: 0, inputmode: "numeric" }),
+      field("registration.upiId", "UPI ID", { placeholder: "name@oksbi" }),
+      field("registration.payeeName", "Name shown in UPI app"),
+      imagePicker("registration.qrImage", { label: "Payment QR code", max: 700, autoLabel: "Auto QR", help: "Upload your UPI QR, or use Auto QR (made from the UPI ID with the fee pre-filled)" })
+    ), true));
+
+    // 2. Next match
+    root.append(section("Next match", "The card at the top of the site (shown after registration closes)", h("div", { class: "grid" },
+      field("nextMatch.title", "Title", { placeholder: "Opening Match" }),
+      field("nextMatch.teams", "Teams", { placeholder: "Team A vs Team B" }),
+      field("nextMatch.date", "Date & time", { type: "datetime-local" }),
+      field("nextMatch.venue", "Venue"),
+      field("nextMatch.note", "Short note", { full: true, placeholder: "e.g. Gates open 7:30 AM" })
+    )));
+
+    // 3. Points table
+    const calc = (t, key, row) => {
+      t.p = (+t.w||0) + (+t.l||0) + (+t.nr||0);
+      t.pts = 2*(+t.w||0) + (+t.nr||0);
+      row.querySelector('[data-key="p"]').value = t.p; row.querySelector('[data-key="pts"]').value = t.pts;
+      if (key === "team") refreshTeamList();
+    };
+    root.append(section("Points table", "Played and points are calculated for you (win = 2, no result = 1)", h("div", {},
+      field("qualifyTop", "Teams that qualify (highlighted)", { type: "number", min: 0, inputmode: "numeric" }),
+      h("div", { style: "height:12px" }),
+      listEditor("pointsTable", [
+        { key: "team", label: "Team", span: 2 }, { key: "w", label: "Won", type: "number", inputmode: "numeric" },
+        { key: "l", label: "Lost", type: "number", inputmode: "numeric" }, { key: "nr", label: "No result", type: "number", inputmode: "numeric" },
+        { key: "nrr", label: "NRR", placeholder: "+0.512" }, { key: "p", label: "Played", readonly: true }, { key: "pts", label: "Points", readonly: true }
+      ], { blank: () => ({ team: "", p: 0, w: 0, l: 0, nr: 0, pts: 0, nrr: "+0.000" }), addLabel: "Add team", onEdit: calc,
+           template: "repeat(auto-fit,minmax(90px,1fr))", emptyText: "No teams yet — the site shows “Points table goes live after the first match”." })
+    )));
+
+    // 4. Results
+    root.append(section("Results", "Newest first — add each match after it's played", listEditor("results", [
+      { key: "date", label: "Date", type: "date" },
+      { key: "teamA", label: "Team A", list: "teamList", span: 2 }, { key: "scoreA", label: "Team A score", placeholder: "112/4 (10)" },
+      { key: "teamB", label: "Team B", list: "teamList", span: 2 }, { key: "scoreB", label: "Team B score" },
+      { key: "winner", label: "Winner (blank = tie / no result)", type: "select", options: winnerOpts, span: 2 },
+      { key: "summary", label: "Margin", placeholder: "Won by 16 runs" },
+      { key: "mom", label: "Player of the match", placeholder: "Name — 48 (22)", span: 2 }
+    ], { blank: () => ({ date: new Date().toISOString().slice(0,10), teamA: "", scoreA: "", teamB: "", scoreB: "", winner: "", summary: "", mom: "" }),
+         addTop: true, addLabel: "Add result",
+         onEdit: (it, key, row) => {
+           if (key !== "teamA" && key !== "teamB") return;
+           const sel = row.querySelector('[data-key="winner"]'), cur = it.winner;
+           sel.innerHTML = ""; winnerOpts(it).forEach(o => sel.append(h("option", { value: o }, o || "—")));
+           sel.value = winnerOpts(it).includes(cur) ? cur : "";
+           if (sel.value !== cur) it.winner = sel.value;
+         } })));
+
+    // 5. Leaderboards
+    root.append(section("Orange cap — most runs", "Top run-scorers (sorted automatically)", listEditor("batting", [
+      { key: "name", label: "Player", span: 2 }, { key: "team", label: "Team", list: "teamList", span: 2 },
+      { key: "runs", label: "Runs", type: "number", inputmode: "numeric" }, { key: "hs", label: "Highest", placeholder: "48*" },
+      { key: "sr", label: "Strike rate", type: "number", step: "0.1", inputmode: "decimal" }
+    ], { blank: () => ({ name: "", team: "", runs: 0, hs: "", sr: 0 }), addLabel: "Add batter" })));
+    root.append(section("Purple cap — most wickets", "Top wicket-takers (sorted automatically)", listEditor("bowling", [
+      { key: "name", label: "Player", span: 2 }, { key: "team", label: "Team", list: "teamList", span: 2 },
+      { key: "wickets", label: "Wickets", type: "number", inputmode: "numeric" }, { key: "best", label: "Best", placeholder: "3/14" },
+      { key: "econ", label: "Economy", type: "number", step: "0.1", inputmode: "decimal" }
+    ], { blank: () => ({ name: "", team: "", wickets: 0, best: "", econ: 0 }), addLabel: "Add bowler" })));
+
+    // 6. Fixtures
+    root.append(section("Fixtures", "Upcoming matches", listEditor("fixtures", [
+      { key: "date", label: "Date", type: "date" }, { key: "time", label: "Time", placeholder: "8:00 AM" },
+      { key: "title", label: "Match", placeholder: "Team A vs Team B / Semi-final 1", span: 2 }, { key: "venue", label: "Venue" }
+    ], { blank: () => ({ date: "", time: "", title: "", venue: "" }), addLabel: "Add fixture" })));
+
+    // 7. Tournament info + general
+    root.append(section("Tournament info", "Shown in the stats strip — leave blank to hide", h("div", { class: "grid" },
+      field("info.prizePool", "Prize pool", { placeholder: "₹51,000" }),
+      field("info.format", "Format", { placeholder: "T10 · Tennis ball" }),
+      field("info.startDate", "Season start", { type: "datetime-local" })
+    )));
+    root.append(section("League details & branding", "Name, tagline, logo and contact links", h("div", { class: "grid" },
+      field("name", "League name"), field("short", "Short name", { placeholder: "SCL" }),
+      field("edition", "Edition", { placeholder: "Championship 2026" }), field("city", "City"),
+      field("tagline", "Tagline", { type: "textarea", full: true }),
+      field("instagram", "Instagram link"), field("instagramHandle", "Instagram handle"),
+      field("whatsapp", "WhatsApp number", { help: "with 91, e.g. 919876543210 — blank hides it", inputmode: "numeric" }),
+      field("contactEmail", "Contact email"),
+      field("defaultDistrict", "Default district on the form"),
+      imagePicker("logo", { label: "Logo", round: true, max: 320, help: "Square image works best" })
+    )));
+
+    refreshTeamList();
+  }
+  function winnerOpts(it){ return ["", it.teamA, it.teamB].filter((v,i,a) => i === 0 || (v && a.indexOf(v) === i)); }
+
+  /* ---------- data ---------- */
+  async function loadContent(){
+    const base = clone(BASE); delete base.formEndpoint;
+    S = base;
+    try {
+      const j = await fetch(API + "?action=content").then(r => r.json());
+      if (j.ok && j.content) {
+        const c = j.content;
+        S = { ...base, ...c };
+        ["registration","info","nextMatch"].forEach(k => S[k] = { ...(base[k]||{}), ...(c[k]||{}) });
+      }
+    } catch(e) { console.warn(e); }
+  }
+  async function loadStats(){
+    try {
+      const j = await api({ action: "stats", password });
+      if (!j.ok) return;
+      const c = j.counts || {};
+      $("#sTotal").textContent = j.total;
+      $("#sVer").textContent = c["Verified"] || 0;
+      $("#sPen").textContent = c["Pending verification"] || 0;
+      $("#sRej").textContent = c["Rejected"] || 0;
+      $("#sheetLink").href = j.sheetUrl;
+    } catch(e) {}
+  }
+
+  async function enter(){
+    $("#loginView").classList.add("hidden");
+    $("#appView").classList.remove("hidden");
+    setStatus("Loading…");
+    await loadContent();
+    build(); dirty = false; setStatus("All changes saved", "ok");
+    loadStats();
+  }
+
+  /* ---------- login ---------- */
+  $("#loginForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const err = $("#loginErr"), btn = $("#loginBtn");
+    if (!connected) { err.textContent = "The site isn't connected to Google Sheets yet — add the Apps Script URL in data.js first (README Step 1)."; return; }
+    btn.disabled = true; btn.textContent = "Checking…"; err.textContent = "";
+    try {
+      const pw = $("#pw").value;
+      const j = await api({ action: "login", password: pw });
+      if (!j.ok) throw new Error(j.error);
+      password = pw; try { sessionStorage.setItem("scl_admin_pw", pw); } catch(e) {}
+      enter();
+    } catch (ex) { err.textContent = ex.message || "Couldn't sign in — check your internet."; }
+    btn.disabled = false; btn.textContent = "Sign in";
+  });
+  $("#logout").onclick = () => { if (dirty && !confirm("You have unsaved changes. Log out anyway?")) return; try { sessionStorage.removeItem("scl_admin_pw"); } catch(e) {} dirty = false; location.reload(); };
+  $("#refreshStats").onclick = loadStats;
+
+  /* ---------- save ---------- */
+  $("#saveBtn").onclick = async () => {
+    const btn = $("#saveBtn");
+    btn.disabled = true; btn.textContent = "Saving…"; setStatus("Publishing to the website…");
+    try {
+      const j = await api({ action: "saveContent", password, content: S });
+      if (!j.ok) throw new Error(j.error);
+      dirty = false; setStatus("Saved " + j.savedAt + " — live on the site ✓", "ok");
+    } catch (ex) { setStatus(ex.message || "Save failed — check your internet and try again.", "err"); }
+    btn.disabled = false; btn.textContent = "Save & publish";
+  };
+
+  /* auto sign-in within the same browser tab session */
+  if (password && connected) api({ action: "login", password }).then(j => j.ok ? enter() : null).catch(() => {});
+  if (!connected) $("#loginErr").textContent = "Not connected yet — add the Apps Script URL in data.js (README Step 1).";
+})();
+</script>
+</body>
+</html>

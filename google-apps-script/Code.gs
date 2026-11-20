@@ -9,6 +9,11 @@
  *   3. Rejects a UTR number that was already used (stops reused payment screenshots)
  *   4. Emails the organiser, and the player too if they gave an email
  *
+ * It also stores the website content edited from admin.html (password protected)
+ * and serves it to the public site.
+ *
+ * Admin password: Project Settings → Script Properties → add  ADMIN_PASSWORD
+ *
  * Setup: see README.md, Step 1.
  */
 
@@ -19,7 +24,7 @@ const SEASON            = '2026';
 const FEE               = 500;                       // ₹ per player
 const SEND_CONFIRMATION = true;                      // email the player (only if they gave an email)
 const INSTAGRAM_URL     = 'https://www.instagram.com/scl_26_championship/';
-const DEADLINE          = '2026-11-20T23:59:59+05:30'; // keep the same as data.js; '' = no deadline
+const DEADLINE          = '2026-11-20T23:59:59+05:30'; // fallback only — the deadline set in admin.html wins
 // ========================
 
 const SHEET_NAME  = 'Registrations';
@@ -38,7 +43,13 @@ function doPost(e) {
   try {
     const d = JSON.parse((e && e.postData && e.postData.contents) || '{}');
     if (d.website) return json_({ ok: true, id: 'SCL-0' });                 // honeypot → bot
-    if (DEADLINE && new Date() > new Date(DEADLINE)) return json_({ ok: false, error: 'Registrations are closed.' });
+    if (d.action && d.action !== 'register') return json_(admin_(d));
+
+    const site = readContent_() || {};
+    const reg = site.registration || {};
+    const deadline = reg.deadline || DEADLINE;
+    const fee = Number(reg.fee) || FEE;
+    if (deadline && new Date() > new Date(deadline)) return json_({ ok: false, error: 'Registrations are closed.' });
 
     const c = (k, n) => clip_(d[k], n || 120);
     const rec = {
@@ -112,7 +123,7 @@ function doPost(e) {
            <a href="https://wa.me/91${rec.phone}">WhatsApp ${rec.phone}</a> ·
            <a href="${SpreadsheetApp.getActiveSpreadsheet().getUrl()}">Open the sheet</a>
          </p>
-         <p style="font-family:Arial;color:#888;font-size:12px">Check that ₹${FEE} with UTR ${rec.utr} arrived in your bank/UPI app, then set Payment status to "Verified" in the sheet.</p>`
+         <p style="font-family:Arial;color:#888;font-size:12px">Check that ₹${fee} with UTR ${rec.utr} arrived in your bank/UPI app, then set Payment status to "Verified" in the sheet.</p>`
     });
 
     // Confirmation to the player (optional email)
@@ -142,15 +153,71 @@ function doPost(e) {
   }
 }
 
-// Visiting the web app URL in a browser shows this — handy to check it's live
-function doGet() {
+// GET ?action=content → website content for the public site (no password: it's public anyway)
+// Plain visit → status check
+function doGet(e) {
+  if (e && e.parameter && e.parameter.action === 'content') return json_({ ok: true, content: readContent_() });
   return json_({ ok: true, status: 'Registration endpoint is running' });
+}
+
+/* ---------- Admin (admin.html) ---------- */
+function admin_(d) {
+  const pass = PropertiesService.getScriptProperties().getProperty('ADMIN_PASSWORD');
+  if (!pass) return { ok: false, error: 'Admin password not set. Add ADMIN_PASSWORD in Apps Script → Project Settings → Script Properties.' };
+  if (String(d.password || '') !== pass) { Utilities.sleep(1500); return { ok: false, error: 'Wrong password.' }; }
+
+  if (d.action === 'login') return { ok: true };
+
+  if (d.action === 'saveContent') {
+    const content = d.content;
+    if (!content || typeof content !== 'object') return { ok: false, error: 'Nothing to save.' };
+    delete content.formEndpoint;                       // never stored — lives in data.js
+    const text = JSON.stringify(content);
+    if (text.length > 900000) return { ok: false, error: 'Content too large — use smaller images.' };
+    writeContent_(text);
+    return { ok: true, savedAt: Utilities.formatDate(new Date(), 'Asia/Kolkata', 'dd MMM, hh:mm a') };
+  }
+
+  if (d.action === 'stats') {
+    const sh = getSheet_(), n = Math.max(0, sh.getLastRow() - 1);
+    const statusCol = HEADERS.indexOf('Payment status') + 1;
+    const counts = {};
+    if (n) sh.getRange(2, statusCol, n, 1).getValues().forEach(r => { counts[r[0]] = (counts[r[0]] || 0) + 1; });
+    return { ok: true, total: n, counts: counts, sheetUrl: SpreadsheetApp.getActiveSpreadsheet().getUrl() };
+  }
+  return { ok: false, error: 'Unknown action.' };
+}
+
+/* ---------- Website content storage (a private JSON file in Drive) ---------- */
+function readContent_() {
+  const cache = CacheService.getScriptCache();
+  const hit = cache.get('content');
+  if (hit) return JSON.parse(hit);
+  const id = PropertiesService.getScriptProperties().getProperty('CONTENT_FILE_ID');
+  if (!id) return null;
+  try {
+    const text = DriveApp.getFileById(id).getBlob().getDataAsString();
+    if (text.length < 95000) cache.put('content', text, 600);
+    return JSON.parse(text);
+  } catch (e) { return null; }
+}
+function writeContent_(text) {
+  const props = PropertiesService.getScriptProperties();
+  const id = props.getProperty('CONTENT_FILE_ID');
+  let file = null;
+  if (id) { try { file = DriveApp.getFileById(id); } catch (e) {} }
+  if (file) file.setContent(text);
+  else props.setProperty('CONTENT_FILE_ID', DriveApp.createFile('SCL website content.json', text, 'application/json').getId());
+  const cache = CacheService.getScriptCache();
+  if (text.length < 95000) cache.put('content', text, 600); else cache.remove('content');
 }
 
 // Run once from the editor (▶ Run) to create the sheet tab + Drive folder and grant permissions
 function setup() {
   getSheet_();
   Logger.log('Drive folder (private): ' + getFolder_().getUrl());
+  CacheService.getScriptCache().remove('content');
+  if (!PropertiesService.getScriptProperties().getProperty('ADMIN_PASSWORD')) Logger.log('⚠️ Add ADMIN_PASSWORD under Project Settings → Script Properties to use admin.html');
   Logger.log('Emails left today: ' + MailApp.getRemainingDailyQuota());
 }
 
